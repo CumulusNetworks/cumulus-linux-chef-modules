@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'berkshelf'
 gem 'rake'
 
 group 'lint' do
@@ -8,6 +7,7 @@ group 'lint' do
 end
 
 group 'kitchen' do
+  gem 'berkshelf'
   gem 'test-kitchen'
   gem 'kitchen-vagrant'
   gem 'serverspec'
