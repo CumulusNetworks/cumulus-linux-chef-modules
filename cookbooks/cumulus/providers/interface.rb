@@ -59,7 +59,7 @@ action :create do
     clagd_sys_mac = new_resource.clagd_sys_mac
     clagd_args = new_resource.clagd_args
 
-    config['clagd-enable'] = true
+    config['clagd-enable'] = 'yes'
     config['clagd-peer-ip'] = clagd_peer_ip unless clagd_peer_ip.nil?
     config['clagd-priority'] = clagd_priority unless clagd_priority.nil?
     config['clagd-sys-mac'] = clagd_sys_mac unless clagd_sys_mac.nil?

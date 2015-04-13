@@ -67,7 +67,7 @@ module Cumulus
       # The array of ports with any ranges prefixed with the 'glob' keyword
       #
       def prefix_glob_port_list(list = [])
-        out = []
+        out = ''
         list.each do |port|
           match = port.match(/^(.+)-(.+)$/)
           if match
@@ -75,8 +75,9 @@ module Cumulus
           else
             out << port
           end
+          out << ' '
         end
-        out
+        out.rstrip
       end
 
       ##
