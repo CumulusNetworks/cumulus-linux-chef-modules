@@ -41,7 +41,7 @@ action :create do
   ipv6 = new_resource.ipv6
   address = ipv4 + ipv6
 
-  config = { 'bond-slaves' => slaves.join(' '),
+  config = { 'bond-slaves' => slaves,
              'bond-miimon' => new_resource.miimon,
              'bond-min-links' => new_resource.min_links,
              'bond-mode' => new_resource.mode,

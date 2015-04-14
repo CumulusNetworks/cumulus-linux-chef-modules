@@ -25,7 +25,7 @@ action :create do
     action :create
   end
 
-  template '/etc/cumulus/ports.conf' do
+  port = template '/etc/cumulus/ports.conf' do
     cookbook 'cumulus'
     source 'ports.erb'
     variables(
@@ -39,5 +39,5 @@ action :create do
     mode '0600'
     backup false
   end
-  new_resource.updated_by_last_action(true)
+  new_resource.updated_by_last_action(port.updated_by_last_action?)
 end
