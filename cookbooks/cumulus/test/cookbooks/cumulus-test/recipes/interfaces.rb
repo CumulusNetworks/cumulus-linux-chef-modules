@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# swp1-10
+
 # With all defaults
 cumulus_interface 'swp1' do
 end
@@ -45,4 +47,14 @@ end
 cumulus_interface 'swp3' do
   post_up "ip route add 192.168.0.0/16 via 192.168.200.2"
   pre_down "ip route del 192.168.0.0/16 via 192.168.200.2"
+end
+
+# Single & multiple IPv4 & IPv6 addresses
+cumulus_interface 'swp3' do
+  ipv4 ['192.168.200.200']
+end
+
+cumulus_interface 'swp4' do
+  ipv4 ['192.168.200.2','192.168.200.3','192.168.200.4']
+  ipv6 ['2001:db8:5678::a','2001:db8:5678::b']
 end

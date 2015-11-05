@@ -64,3 +64,17 @@ describe file("#{intf_dir}/swp3") do
   its(:content) { should match(/post-up ip route add 192.168.0.0\/16 via 192.168.200.2/) }
   its(:content) { should match(/pre-down ip route del 192.168.0.0\/16 via 192.168.200.2/) }
 end
+
+describe file("#{intf_dir}/swp3") do
+  its(:content) { should match(/iface swp3/) }
+  its(:content) { should match(/address 192.168.200.200/) }
+end
+
+describe file("#{intf_dir}/swp4") do
+  its(:content) { should match(/iface swp4/) }
+  its(:content) { should match(/address 192.168.200.2/) }
+  its(:content) { should match(/address 192.168.200.3/) }
+  its(:content) { should match(/address 192.168.200.4/) }
+  its(:content) { should match(/address 2001:db8:5678::a/) }
+  its(:content) { should match(/address 2001:db8:5678::b/) }
+end

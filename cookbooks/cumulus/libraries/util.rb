@@ -148,6 +148,28 @@ module Cumulus
       end
 
       ##
+      # Remove any empty keys from a hash, to allow us to safely compare
+      # hashes.
+      #
+      # = Parameters:
+      # hash::
+      #   Hash to remove any nil entries from.
+      #
+      def remove_nil_entries(hash)
+        Chef::Log.debug("original hash is: #{hash}")
+
+        unless hash.nil?
+          # The JSON from ifquery is actually wrapped inside an array, so we
+          # have to unpack it, process it and then re-pack it.
+          intf = hash[0]
+          intf.delete_if { |_key, value| value.nil? }
+          hash[0] = intf
+        end
+        Chef::Log.debug("new hash is: #{hash}")
+        return hash
+      end
+
+      ##
       # Use ifquery to generate a JSON representation of an interface and
       # return the hash.
       #
@@ -166,7 +188,7 @@ module Cumulus
           IO.popen("ifquery #{name} -o json") do |ifquery|
             json = ifquery.read
           end
-          return JSON.load(json)
+          return remove_nil_entries(JSON.load(json))
         rescue StandardError => ex
           Chef::Log.fatal("failed to run ifquery for interface #{name}:  #{ex}")
         end
@@ -199,6 +221,7 @@ module Cumulus
       #
       def hash_to_if(name, hash)
         begin
+          hash = remove_nil_entries(hash)
           intf = ''
           IO.popen("ifquery -i - -t json #{name}", 'r+') do |ifquery|
             ifquery.write(hash.to_json)

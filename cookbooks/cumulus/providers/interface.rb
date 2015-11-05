@@ -42,6 +42,10 @@ action :create do
   ipv6 = new_resource.ipv6
   address = ipv4 + ipv6
 
+  # ifquery sets hash value to a string if address list length == 1
+  # otherwise it sets it to an array
+  address = address.length == 1 ? address.join : address
+
   config = {}
 
   # Insert optional parameters
