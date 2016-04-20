@@ -165,11 +165,11 @@ The cumulus_interface provider can be used to manage front panel ports, L3 bridg
 * `mstpctl_bpduguard` - Enable BPDU guard on a VLAN aware trunk.
 * `mstpctl_portadminedge` - Enables admin edge port.
 
-The following CLAG related attributes are also available. If CLAG is enabled, `clagd_enable`, `clagd_priority`, `clagd_peer_id` and `clagd_sys_mac` should all be provided:
+The following CLAG related attributes are also available. If CLAG is enabled, `clagd_enable`, `clagd_priority`, `clagd_peer_ip` and `clagd_sys_mac` should all be provided:
 
 * `clagd_enable` - Enable the clagd daemon.
 * `clagd_priority` - Set the CLAG priority for this switch.
-* `clagd_peer_id` - Address of the CLAG peer switch.
+* `clagd_peer_ip` - Address of the CLAG peer switch.
 * `clagd_sys_mac` - CLAG system MAC. The MAC must be identical on both of the CLAG peers.
 * `clagd_args` - Any additional arguments to be passed to the clagd deamon.
 
