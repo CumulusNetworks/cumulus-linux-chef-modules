@@ -28,6 +28,7 @@ cumulus_bond 'bond1' do
   lacp_bypass_period 30
   lacp_bypass_all_active 1
   mtu 9000
+  use_carrier 1
   # ifquery doesn't seem to like clagd related parameters on an interface?
   # clag_id 1
   virtual_ip '192.168.100.1'
