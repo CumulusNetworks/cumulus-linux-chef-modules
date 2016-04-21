@@ -19,6 +19,7 @@ describe file("#{intf_dir}/br1") do
   its(:content) { should match(/alias classic bridge number 1/) }
   its(:content) { should match(/bridge-ports glob swp13-14/) }
   its(:content) { should match(/bridge-stp no/) }
+  its(:content) { should match(/bridge-mcsnoop 1/) }
   its(:content) { should match(/mtu 9000/) }
   its(:content) { should match(/mstpctl-treeprio 4096/) }
   its(:content) { should match(/address 10.0.0.1\/24/) }

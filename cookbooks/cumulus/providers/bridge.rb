@@ -32,6 +32,7 @@ action :create do
   post_up = new_resource.post_up
   pre_down = new_resource.pre_down
   location = new_resource.location
+  mcsnoop = new_resource.mcsnoop
 
   ipv4 = new_resource.ipv4
   ipv6 = new_resource.ipv6
@@ -50,6 +51,10 @@ action :create do
   config['address-virtual'] = [virtual_mac, virtual_ip].compact.join(' ') unless virtual_ip.nil? && virtual_mac.nil?
   config['post-up'] = post_up unless post_up.nil?
   config['pre-down'] = pre_down unless post_up.nil?
+
+  if mcsnoop
+    config['bridge-mcsnoop'] = 1
+  end
 
   if new_resource.vlan_aware
     config['bridge-vlan-aware'] = 'yes'
