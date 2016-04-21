@@ -71,6 +71,7 @@ action :create do
     config['clagd-priority'] = clagd_priority unless clagd_priority.nil?
     config['clagd-sys-mac'] = clagd_sys_mac unless clagd_sys_mac.nil?
     config['clagd-args'] = "\"#{clagd_args}\"" unless clagd_args.nil?
+    config['clagd-backup-ip'] = clagd_backup_ip unless clagd_backup_ip.nil?
   end
 
   unless speed.nil?
