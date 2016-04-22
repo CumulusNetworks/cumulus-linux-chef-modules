@@ -24,6 +24,7 @@ action :create do
   name = new_resource.name
   addr_method = new_resource.addr_method
   speed = new_resource.speed
+  auto_neg = new_resource.auto_neg
   mtu = new_resource.mtu
   clagd_enable = new_resource.clagd_enable
   alias_name = new_resource.alias_name
@@ -77,6 +78,9 @@ action :create do
     config['link-speed'] = speed
     # link-duplex is always set to 'full' if link-speed is set
     config['link-duplex'] = 'full'
+    unless auto_neg.nil?
+      config['link-autoneg'] = auto_neg ? 'on' : 'off'
+    end
   end
 
   # Family is always 'inet' if a method is set
