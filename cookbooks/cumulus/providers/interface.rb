@@ -65,6 +65,7 @@ action :create do
     clagd_priority = new_resource.clagd_priority
     clagd_sys_mac = new_resource.clagd_sys_mac
     clagd_args = new_resource.clagd_args
+    clagd_backup_ip = new_resource.clagd_backup_ip
 
     config['clagd-enable'] = 'yes'
     config['clagd-peer-ip'] = clagd_peer_ip unless clagd_peer_ip.nil?
