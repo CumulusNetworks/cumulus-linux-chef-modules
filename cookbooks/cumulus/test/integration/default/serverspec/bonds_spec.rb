@@ -23,7 +23,7 @@ describe file("#{intf_dir}/bond1") do
   its(:content) { should match(/bond-lacp-bypass-period 30/) }
   its(:content) { should match(/bond-lacp-bypass-all-active 1/) }
   its(:content) { should match(/bond-min-links 2/) }
-  its(:content) { should match(/bridge-vids 1-4094/) }
+  its(:content) { should match(/bridge-vids 1 2 4-4094/) }
   its(:content) { should match(/bridge-pvid 1/) }
   its(:content) { should match(/alias bond number 1/) }
   its(:content) { should match(/bond-mode balance-alb/) }

@@ -59,7 +59,7 @@ action :create do
   config['alias'] = alias_name unless alias_name.nil?
   config['mtu'] = mtu unless mtu.nil?
   config['clag-id'] = clag_id unless clag_id.nil?
-  config['bridge-vids'] = vids unless vids.nil?
+  config['bridge-vids'] = vids.join(' ') unless vids.nil?
   config['bridge-pvid'] = pvid unless pvid.nil?
   config['address-virtual'] = [virtual_mac, virtual_ip].compact.join(' ') unless virtual_ip.nil? && virtual_mac.nil?
   config['post-up'] = post_up unless post_up.nil?

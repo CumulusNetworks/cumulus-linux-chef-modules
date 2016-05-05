@@ -31,7 +31,7 @@ cumulus_bond 'bond1' do
   # ifquery doesn't seem to like clagd related parameters on an interface?
   # clag_id 1
   virtual_ip '192.168.100.1'
-  vids ['1-4094']
+  vids [1, 2, '4-4094']
   pvid 1
   virtual_mac '11:22:33:44:55:FF'
   virtual_ip '192.168.20.1'
