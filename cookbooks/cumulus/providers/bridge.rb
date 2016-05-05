@@ -58,7 +58,7 @@ action :create do
     vids = new_resource.vids
     pvid = new_resource.pvid
 
-    config['bridge-vids'] = vids unless vids.nil?
+    config['bridge-vids'] = vids.join(" ") unless vids.nil?
     config['bridge-pvid'] = pvid unless pvid.nil?
   end
 

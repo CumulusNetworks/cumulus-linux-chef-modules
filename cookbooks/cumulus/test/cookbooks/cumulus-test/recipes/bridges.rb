@@ -35,7 +35,7 @@ end
 cumulus_bridge 'bridge3' do
   ports ['swp17-18']
   vlan_aware true
-  vids ['1-4094']
+  vids [1, 2, '4-4094']
   pvid 1
   ipv4 ['10.0.100.1/24', '192.168.100.0/16']
   ipv6 ['2001:db8:1234::/48']
