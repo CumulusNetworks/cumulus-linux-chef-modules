@@ -10,6 +10,7 @@ describe file("#{intf_dir}/bond0") do
   it { should be_file }
   its(:content) { should match(/iface bond0/) }
   its(:content) { should match(/bond-slaves glob swp1-2 swp4/) }
+  its(:content) { should match(/bridge-access 2/) }
 end
 
 describe file("#{intf_dir}/bond1") do
