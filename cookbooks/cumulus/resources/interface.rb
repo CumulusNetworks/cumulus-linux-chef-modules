@@ -16,6 +16,7 @@ actions :create
 default_action :create
 
 attribute :name, kind_of: String, name_attribute: true
+attribute :auto, kind_of: [TrueClass, FalseClass], default: true
 attribute :ipv4, kind_of: Array, default: []
 attribute :ipv6, kind_of: Array, default: []
 attribute :addr_method, kind_of: [String, NilClass]

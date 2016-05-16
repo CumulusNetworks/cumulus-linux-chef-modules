@@ -22,6 +22,7 @@ use_inline_resources
 
 action :create do
   name = new_resource.name
+  auto = new_resource.auto
   addr_method = new_resource.addr_method
   speed = new_resource.speed
   mtu = new_resource.mtu
@@ -82,7 +83,7 @@ action :create do
   # Family is always 'inet' if a method is set
   addr_family = addr_method.nil? ? nil : 'inet'
 
-  new = [{ 'auto' => true,
+  new = [{ 'auto' => auto,
            'name' => name,
            'config' => config }]
 
