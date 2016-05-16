@@ -41,7 +41,7 @@ action :create do
 
   ipv4 = new_resource.ipv4
   ipv6 = new_resource.ipv6
-  address = ipv4 + ipv6
+  address = (ipv4 + ipv6).empty? ? nil : ipv4 + ipv6
 
   config = {}
 
