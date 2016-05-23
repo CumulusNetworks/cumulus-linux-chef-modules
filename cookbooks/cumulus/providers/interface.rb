@@ -39,6 +39,7 @@ action :create do
   mstpctl_portadminedge = new_resource.mstpctl_portadminedge
   mstpctl_bpduguard = new_resource.mstpctl_bpduguard
   location = new_resource.location
+  bridge_access = new_resource.bridge_access
 
   ipv4 = new_resource.ipv4
   ipv6 = new_resource.ipv6
@@ -54,6 +55,7 @@ action :create do
   config['mtu'] = mtu unless mtu.nil?
   config['bridge-vids'] = vids unless vids.nil?
   config['bridge-pvid'] = pvid unless pvid.nil?
+  config['bridge-access'] = bridge_access unless bridge_access.nil?
   config['address-virtual'] = [virtual_mac, virtual_ip].compact.join(' ') unless virtual_ip.nil? && virtual_mac.nil?
   config['post-up'] = post_up unless post_up.nil?
   config['pre-down'] = pre_down unless pre_down.nil?

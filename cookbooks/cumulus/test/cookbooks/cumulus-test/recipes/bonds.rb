@@ -10,6 +10,7 @@
 # Bond with defaults
 cumulus_bond 'bond0' do
   slaves ['swp1-2', 'swp4']
+  bridge_access 2
 end
 
 # Bond, over-ride all defaults
