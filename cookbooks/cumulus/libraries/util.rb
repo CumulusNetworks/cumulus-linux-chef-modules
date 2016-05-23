@@ -230,6 +230,31 @@ module Cumulus
       def bool_to_yn(bool)
         bool ? 'yes' : 'no'
       end
+
+      ##
+      # Convert an integer to string (works for integers and arrays)
+      #
+      # = Example
+      #
+      #   convert_int_to_string(401)
+      #   => '401'
+      #
+      #   convert_int_to_string([401,402])
+      #   => ['401','402']
+      #
+      # = Parameters::
+      # object::
+      #   Integer or Array value to convert from
+      #
+      def convert_int_to_string(object)
+        if object.is_a?(Integer)
+          object.to_s
+        elsif object.is_a?(Array)
+          object.map! {|obj| convert_int_to_string(obj)}
+        else
+          object
+        end
+      end
     end
   end
 end
