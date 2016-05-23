@@ -40,6 +40,7 @@ action :create do
   mstpctl_bpduguard = new_resource.mstpctl_bpduguard
   lacp_bypass_allow = new_resource.lacp_bypass_allow
   location = new_resource.location
+  bridge_access = new_resource.bridge_access
 
   ipv4 = new_resource.ipv4
   ipv6 = new_resource.ipv6
@@ -67,6 +68,7 @@ action :create do
   config['mstpctl-portnetwork'] = Cumulus::Utils.bool_to_yn(mstpctl_portnetwork) unless mstpctl_portnetwork.nil?
   config['mstpctl-portadminedge'] = Cumulus::Utils.bool_to_yn(mstpctl_portadminedge) unless mstpctl_portadminedge.nil?
   config['mstpctl-bpduguard'] = Cumulus::Utils.bool_to_yn(mstpctl_bpduguard) unless mstpctl_bpduguard.nil?
+  config['bridge-access'] = bridge_access unless bridge_access.nil?
 
   # Family is always 'inet' if a method is set
   addr_family = addr_method.nil? ? nil : 'inet'
