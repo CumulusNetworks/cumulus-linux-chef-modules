@@ -250,7 +250,7 @@ module Cumulus
         if object.is_a?(Integer)
           object.to_s
         elsif object.is_a?(Array)
-          object.map! {|obj| convert_int_to_string(obj)}
+          object.map! { |obj| convert_int_to_string(obj) }
         else
           object
         end
