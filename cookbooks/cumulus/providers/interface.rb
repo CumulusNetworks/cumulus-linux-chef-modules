@@ -78,9 +78,7 @@ action :create do
     config['link-speed'] = speed
     # link-duplex is always set to 'full' if link-speed is set
     config['link-duplex'] = 'full'
-    unless auto_neg.nil?
-      config['link-autoneg'] = auto_neg ? 'on' : 'off'
-    end
+    config['link-autoneg'] = auto_neg ? 'on' : 'off'
   end
 
   # Family is always 'inet' if a method is set

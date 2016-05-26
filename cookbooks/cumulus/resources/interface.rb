@@ -22,7 +22,7 @@ attribute :addr_method, kind_of: [String, NilClass]
 attribute :vids, kind_of: [Array, NilClass]
 attribute :pvid, kind_of: [Integer, NilClass]
 attribute :speed, kind_of: [String, NilClass]
-attribute :auto_neg, kind_of: [TrueClass, FalseClass, NilClass]
+attribute :auto_neg, kind_of: [TrueClass, FalseClass], default: false
 attribute :mtu, kind_of: [Integer, NilClass]
 attribute :clagd_enable, kind_of: [TrueClass, FalseClass], default: false
 attribute :clagd_peer_ip, kind_of: [String, NilClass]
