@@ -48,6 +48,7 @@ describe file("#{intf_dir}/swp2") do
   its(:content) { should match(/bridge-access 2/) }
   its(:content) { should match(/link-speed 1000/) }
   its(:content) { should match(/link-duplex full/) }
+  its(:content) { should match(/link-autoneg off/) }
   its(:content) { should match(/alias interface swp2/) }
   its(:content) { should match(/mstpctl-portnetwork yes/) }
   its(:content) { should match(/mstpctl-portadminedge yes/) }
