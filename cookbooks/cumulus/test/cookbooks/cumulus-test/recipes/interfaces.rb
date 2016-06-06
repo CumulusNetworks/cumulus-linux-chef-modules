@@ -17,6 +17,7 @@ cumulus_interface 'swp2' do
   ipv6 ['2001:db8:5678::']
   addr_method 'static'
   speed '1000'
+  auto_neg false
   mtu 9000
   # ifquery doesn't seem to like clagd related parameters on an interface?
   # clagd_enable true
@@ -24,6 +25,7 @@ cumulus_interface 'swp2' do
   # clagd_peer_ip '10.1.2.3'
   # clagd_sys_mac 'aa:bb:cc:dd:ee:ff'
   vids ['1-4094']
+  bridge_access 2
   pvid 1
   alias_name 'interface swp2'
   virtual_mac '11:22:33:44:55:66'

@@ -22,8 +22,10 @@ use_inline_resources
 
 action :create do
   name = new_resource.name
+  auto = new_resource.auto
   addr_method = new_resource.addr_method
   speed = new_resource.speed
+  auto_neg = new_resource.auto_neg
   mtu = new_resource.mtu
   clagd_enable = new_resource.clagd_enable
   alias_name = new_resource.alias_name
@@ -38,10 +40,11 @@ action :create do
   mstpctl_portadminedge = new_resource.mstpctl_portadminedge
   mstpctl_bpduguard = new_resource.mstpctl_bpduguard
   location = new_resource.location
+  bridge_access = new_resource.bridge_access
 
   ipv4 = new_resource.ipv4
   ipv6 = new_resource.ipv6
-  address = ipv4 + ipv6
+  address = (ipv4 + ipv6).empty? ? nil : ipv4 + ipv6
 
   config = {}
 
@@ -53,9 +56,10 @@ action :create do
   config['mtu'] = mtu unless mtu.nil?
   config['bridge-vids'] = vids unless vids.nil?
   config['bridge-pvid'] = pvid unless pvid.nil?
+  config['bridge-access'] = bridge_access unless bridge_access.nil?
   config['address-virtual'] = [virtual_mac, virtual_ip].compact.join(' ') unless virtual_ip.nil? && virtual_mac.nil?
   config['post-up'] = post_up unless post_up.nil?
-  config['pre-down'] = pre_down unless post_up.nil?
+  config['pre-down'] = pre_down unless pre_down.nil?
   config['post-down'] = post_down unless post_down.nil?
   config['mstpctl-portnetwork'] = Cumulus::Utils.bool_to_yn(mstpctl_portnetwork) unless mstpctl_portnetwork.nil?
   config['mstpctl-portadminedge'] = Cumulus::Utils.bool_to_yn(mstpctl_portadminedge) unless mstpctl_portadminedge.nil?
@@ -67,24 +71,30 @@ action :create do
     clagd_priority = new_resource.clagd_priority
     clagd_sys_mac = new_resource.clagd_sys_mac
     clagd_args = new_resource.clagd_args
+    clagd_backup_ip = new_resource.clagd_backup_ip
 
     config['clagd-enable'] = 'yes'
     config['clagd-peer-ip'] = clagd_peer_ip unless clagd_peer_ip.nil?
     config['clagd-priority'] = clagd_priority unless clagd_priority.nil?
     config['clagd-sys-mac'] = clagd_sys_mac unless clagd_sys_mac.nil?
     config['clagd-args'] = "\"#{clagd_args}\"" unless clagd_args.nil?
+    config['clagd-backup-ip'] = clagd_backup_ip unless clagd_backup_ip.nil?
   end
 
   unless speed.nil?
     config['link-speed'] = speed
     # link-duplex is always set to 'full' if link-speed is set
     config['link-duplex'] = 'full'
+    config['link-autoneg'] = auto_neg ? 'on' : 'off'
   end
 
   # Family is always 'inet' if a method is set
   addr_family = addr_method.nil? ? nil : 'inet'
 
-  new = [{ 'auto' => true,
+  # change integers to strings (ifquery returns strings in if_to_hash)
+  config.each { |k, v| config[k] = Cumulus::Utils.convert_int_to_string(v) }
+
+  new = [{ 'auto' => auto,
            'name' => name,
            'config' => config }]
 
