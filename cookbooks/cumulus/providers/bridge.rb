@@ -51,10 +51,7 @@ action :create do
   config['address-virtual'] = [virtual_mac, virtual_ip].compact.join(' ') unless virtual_ip.nil? && virtual_mac.nil?
   config['post-up'] = post_up unless post_up.nil?
   config['pre-down'] = pre_down unless post_up.nil?
-
-  if mcsnoop
-    config['bridge-mcsnoop'] = 1
-  end
+  config['bridge-mcsnoop'] = 1 if mcsnoop
 
   if new_resource.vlan_aware
     config['bridge-vlan-aware'] = 'yes'
