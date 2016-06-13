@@ -39,6 +39,8 @@ cumulus_interface 'swp2' do
   ]
   pre_down [
     "ip route del 10.0.0.0/8 via 192.168.200.2",
+  ]
+  post_down [
     "ip route del 172.16.0.0/12 via 192.168.200.2"
   ]
 end
