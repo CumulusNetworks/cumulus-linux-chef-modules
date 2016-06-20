@@ -32,3 +32,4 @@ attribute :pvid, kind_of: [Integer, NilClass]
 attribute :location, kind_of: String, default: node['cumulus']['interfaces']['dir']
 attribute :post_up, kind_of: [String, Array, NilClass]
 attribute :pre_down, kind_of: [String, Array, NilClass]
+attribute :mcsnoop, kind_of: [TrueClass, FalseClass], default: false

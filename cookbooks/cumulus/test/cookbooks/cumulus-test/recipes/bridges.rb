@@ -23,6 +23,7 @@ cumulus_bridge 'br1' do
   mstpctl_treeprio 4096
   virtual_ip '192.168.100.1'
   virtual_mac 'aa:bb:cc:dd:ee:ff'
+  mcsnoop true
 end
 
 # New bridge driver with defaults
