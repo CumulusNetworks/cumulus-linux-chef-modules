@@ -10,6 +10,7 @@
 # Bond with defaults
 cumulus_bond 'bond0' do
   slaves ['swp1-2', 'swp4']
+  bridge_access 2
 end
 
 # Bond, over-ride all defaults
@@ -32,7 +33,7 @@ cumulus_bond 'bond1' do
   # ifquery doesn't seem to like clagd related parameters on an interface?
   # clag_id 1
   virtual_ip '192.168.100.1'
-  vids ['1-4094']
+  vids [1, 2, '4-4094']
   pvid 1
   virtual_mac '11:22:33:44:55:FF'
   virtual_ip '192.168.20.1'

@@ -284,6 +284,7 @@ The provider supports both "classic" and "VLAN aware" bridge driver models.
 * `virtual_mac` - VRR virtual MAC
 * `vids` - Array of VLANs to be configured for a VLAN aware trunk interface.
 * `pvid` - Native VLAN for a VLAN aware trunk interface.
+* `ports` - Array of switchports to be included in the bridge
 * `location` - Location of the configuration snippets directory. Default is the directory set by the `node['cumulus']['interfaces']['dir']` attribute.
 
 ##### Examples:

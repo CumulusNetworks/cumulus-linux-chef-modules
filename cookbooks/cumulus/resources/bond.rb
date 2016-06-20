@@ -43,3 +43,4 @@ attribute :location, kind_of: String, default: node['cumulus']['interfaces']['di
 attribute :post_up, kind_of: [String, Array, NilClass]
 attribute :pre_down, kind_of: [String, Array, NilClass]
 attribute :use_carrier, kind_of: [Integer, NilClass], default: 1
+attribute :bridge_access, kind_of: [Integer, NilClass]
