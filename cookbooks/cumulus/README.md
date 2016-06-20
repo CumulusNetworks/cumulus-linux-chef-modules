@@ -234,6 +234,7 @@ Manage a network bond using the ifupdown2 `ifquery` tool. The configuration for 
 * `mstpctl_bpduguard` - Enable BPDU guard on a VLAN aware trunk.
 * `mstpctl_portadminedge` - Enables admin edge port.
 * `clag_id` - Define which bond is in the CLAG. The ID must be the same on both CLAG peers.
+* `use_carrier` - how to determine link state
 
 The following LACP bypass related attributes are also available. If LACP bypass is enabled, one of the `lacp_bypass_priority` or `lacp_bypass_all_active` attributes must be specified:
 
