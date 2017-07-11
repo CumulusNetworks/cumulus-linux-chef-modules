@@ -192,7 +192,7 @@ Configure `swp33` as a 1GbE port with a single IPv4 address:
 ````ruby
 cumulus_interface 'swp33' do
   ipv4 ['10.30.1.1/24']
-  link_speed 1000
+  speed '1000'
 end
 ````
 
