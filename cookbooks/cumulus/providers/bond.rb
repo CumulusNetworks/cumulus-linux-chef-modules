@@ -93,6 +93,8 @@ action :create do
     config['bond-lacp-bypass-period'] = lacp_bypass_period unless lacp_bypass_period.nil?
   end
 
+  config.merge!(config) { |_k, v| v.to_s }
+
   new = [{ 'auto' => true,
            'name' => name,
            'config' => config }]
