@@ -65,6 +65,9 @@ action :create do
   # Family is always 'inet' if a method is set
   addr_family = addr_method.nil? ? nil : 'inet'
 
+  # change integers to strings (ifquery returns strings in if_to_hash)
+  config.each { |k, v| config[k] = Cumulus::Utils.convert_int_to_string(v) }
+
   new = [{ 'auto' => true,
            'name' => name,
            'config' => config }]
